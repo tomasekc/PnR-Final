@@ -50,6 +50,7 @@ class GoPiggy(pigo.Pigo):
         x = 100
         while self.clearToMove() and x <= 200:
             print("Speed is set to:" + str(x))
+            for x in range(self.MIDPOINT+10, self.MIDPOINT-10, 5):
             set_speed(x)
             servo(20)
             self.encB(5)
@@ -58,6 +59,8 @@ class GoPiggy(pigo.Pigo):
             self.encF(5)
             servo(120)
             time.sleep(.1)
+
+
 
     def clearToMove(self):
         servo(self.MIDPOINT)
