@@ -56,7 +56,10 @@ class GoPiggy(pigo.Pigo):
             self.encB(5)
             self.encR(2)
             self.encL(2)
-            self.encF(5)
+            self.encF(10)
+            self.encR(2)
+            self.encL(2)
+            self.encB(5)
             servo(120)
             time.sleep(.1)
 
