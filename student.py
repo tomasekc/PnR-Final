@@ -48,7 +48,7 @@ class GoPiggy(pigo.Pigo):
         print("Piggy dance")
         ##### WRITE YOUR FIRST PROJECT HERE
         x = 100
-        while self.isClear() and x <= 200:
+        while self.clearToMove() and x <= 200:
             print("Speed is set to:" + str(x))
             set_speed(x)
             servo(20)
@@ -58,10 +58,37 @@ class GoPiggy(pigo.Pigo):
             self.encF(5)
             servo(120)
             time.sleep(.1)
-            x += 25
+
+    def clearToMove(self):
+        servo(self.MIDPOINT)
+        time.sleep(.1)
+        scan1 = us_dist(15)
+        time.sleep(.1)
+        print("Front Distance:" + str(us_dist(15)))
+        servo(self.MIDPOINT - 60)
+        time.sleep(.1)
+        scan2 = us_dist(15)
+        time.sleep(.1)
+        print("Right Distance:" + str(us_dist(15)))
+        servo(self.MIDPOINT + 60)
+        time.sleep(.1)
+        scan3 = us_dist(15)
+        time.sleep(.1)
+        print("Left Distance:" + str(us_dist(15)))
+        scan0 = (scan1 + scan2 +scan3) / 3
+        if scan0 < self.STOP_DIST:
+            print("There is something in the way")
+            return False
+        if scan0 > self.STOP_DIST:
+            print("It is clear to move")
+            return True
+
 
     def status(self):
         print("My power is at:" + str(volt()) + "volts")
+        servo(self.MIDPOINT)
+        time.sleep(.1)
+        return us_dist(15)
 
 
     # AUTONOMOUS DRIVING
