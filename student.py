@@ -88,6 +88,7 @@ class GoPiggy(pigo.Pigo):
 
         if scan0 > self.STOP_DIST:
             print("It is clear to move")
+            return True
 
 
     def status(self):
