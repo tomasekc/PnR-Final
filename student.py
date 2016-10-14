@@ -52,7 +52,7 @@ class GoPiggy(pigo.Pigo):
             print("Let's dance!")
         for x in range(2):
             if not self.isClear():
-                print "Omergosh, it ain't clear!"
+                print ("Omergosh, it ain't clear!")
                 break
             x = 100
             print("Speed is set to:" + str(x))
