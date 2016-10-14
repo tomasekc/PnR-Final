@@ -47,9 +47,11 @@ class GoPiggy(pigo.Pigo):
     def dance(self):
         print("Piggy dance")
         ##### WRITE YOUR FIRST PROJECT HERE
+        #Check if its clear using superClear method
         print("Is it clear?")
         if(self.superClear()):
             print("Let's dance!")
+        #Time to dance
         for x in range(3):
             x = 100
             print("Speed is set to:" + str(x))
@@ -67,33 +69,38 @@ class GoPiggy(pigo.Pigo):
 
 
     def superClear(self):
+    #Check front distance
         servo(self.MIDPOINT)
         time.sleep(.1)
         scan1 = us_dist(15)
         time.sleep(.5)
         print("Front Distance:" + str(us_dist(15)))
+    #Check right distance
         servo(self.MIDPOINT - 60)
         time.sleep(.1)
         scan2 = us_dist(15)
         time.sleep(.5)
         print("Right Distance:" + str(us_dist(15)))
+    #Check left distance
         servo(self.MIDPOINT + 60)
         time.sleep(.1)
         scan3 = us_dist(15)
         time.sleep(.5)
         print("Left Distance:" + str(us_dist(15)))
+    #Average the 3 scans
         scan0 = (scan1 + scan2 +scan3) / 3
         time.sleep(.1)
         servo(self.MIDPOINT)
         time.sleep(.5)
+    #If its safe or not to dance:
         if scan0 < self.STOP_DIST:
-            print("There is something in the way")
+            print("There is something in the way, so I'll back up")
             time.sleep(.5)
             self.encB(20)
             return False
 
         if scan0 > self.STOP_DIST:
-            print("It is clear to move")
+            print("It looks pretty clear")
         return True
 
 
