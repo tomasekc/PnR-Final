@@ -47,8 +47,14 @@ class GoPiggy(pigo.Pigo):
     def dance(self):
         print("Piggy dance")
         ##### WRITE YOUR FIRST PROJECT HERE
-        x = 100
-        while self.clearToMove() and x <= 200:
+        print("Is it clear?")
+        if(self.isClear()):
+            print("Let's dance!")
+        for x in range(2):
+            if not self.isClear():
+                print "Omergosh, it ain't clear!"
+                break
+            x = 100
             print("Speed is set to:" + str(x))
             set_speed(x)
             servo(20)
@@ -61,33 +67,6 @@ class GoPiggy(pigo.Pigo):
             self.encB(5)
             servo(120)
             time.sleep(.1)
-
-
-    def clearToMove(self):
-        servo(self.MIDPOINT)
-        time.sleep(.1)
-        scan1 = us_dist(15)
-        time.sleep(.5)
-        print("Front Distance:" + str(us_dist(15)))
-        servo(self.MIDPOINT - 60)
-        time.sleep(.1)
-        scan2 = us_dist(15)
-        time.sleep(.5)
-        print("Right Distance:" + str(us_dist(15)))
-        servo(self.MIDPOINT + 60)
-        time.sleep(.1)
-        scan3 = us_dist(15)
-        time.sleep(.5)
-        print("Left Distance:" + str(us_dist(15)))
-        scan0 = (scan1 + scan2 +scan3) / 3
-        if scan0 < self.STOP_DIST:
-            print("There is something in the way")
-            self.encB(5)
-            return False
-
-        #if scan0 > self.STOP_DIST:
-            #print("It is clear to move")
-        return True
 
 
     def status(self):
