@@ -51,19 +51,19 @@ class GoPiggy(pigo.Pigo):
         if(self.superClear()):
             print("Let's dance!")
         for x in range(2):
-            if not self.isClear():
-                print ("Omergosh, it ain't clear!")
-                break
+            #if not self.isClear():
+                #print ("Omergosh, it ain't clear!")
+                #break
             x = 100
             print("Speed is set to:" + str(x))
             set_speed(x)
             servo(20)
-            self.encB(5)
-            self.encR(2)
-            self.encL(2)
-            self.encF(10)
-            self.encR(2)
-            self.encL(2)
+            self.encB(10)
+            self.encR(4)
+            self.encL(4)
+            self.encF(15)
+            self.encR(4)
+            self.encL(4)
             self.encB(5)
             servo(120)
             time.sleep(.1)
@@ -88,7 +88,7 @@ class GoPiggy(pigo.Pigo):
         scan0 = (scan1 + scan2 +scan3) / 3
         if scan0 < self.STOP_DIST:
             print("There is something in the way")
-            self.encB(5)
+            self.encB(20)
             return False
 
         if scan0 > self.STOP_DIST:
