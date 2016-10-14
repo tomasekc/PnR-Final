@@ -50,10 +50,7 @@ class GoPiggy(pigo.Pigo):
         print("Is it clear?")
         if(self.superClear()):
             print("Let's dance!")
-        for x in range(2):
-            #if not self.isClear():
-                #print ("Omergosh, it ain't clear!")
-                #break
+        for x in range(3):
             x = 100
             print("Speed is set to:" + str(x))
             set_speed(x)
@@ -67,6 +64,7 @@ class GoPiggy(pigo.Pigo):
             self.encB(5)
             servo(120)
             time.sleep(.1)
+            speed += 15
 
 
     def superClear(self):
