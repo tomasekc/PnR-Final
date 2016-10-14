@@ -64,7 +64,6 @@ class GoPiggy(pigo.Pigo):
             self.encB(5)
             servo(120)
             time.sleep(.1)
-            speed += 15
 
 
     def superClear(self):
@@ -84,8 +83,12 @@ class GoPiggy(pigo.Pigo):
         time.sleep(.5)
         print("Left Distance:" + str(us_dist(15)))
         scan0 = (scan1 + scan2 +scan3) / 3
+        time.sleep(.1)
+        servo(self.MIDPOINT)
+        time.sleep(.5)
         if scan0 < self.STOP_DIST:
             print("There is something in the way")
+            time.sleep(.5)
             self.encB(20)
             return False
 
