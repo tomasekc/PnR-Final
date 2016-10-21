@@ -119,8 +119,8 @@ class GoPiggy(pigo.Pigo):
         while self.isClear():
             #Let's go forward just a bit
             self.encF(10)
-        if self.isClear() is False:
-            self.choosePath()
+            if False:
+                self.choosePath()
 
 
 
