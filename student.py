@@ -98,7 +98,6 @@ class GoPiggy(pigo.Pigo):
             time.sleep(.5)
             self.encB(20)
             return False
-
         if scan0 > self.STOP_DIST:
             print("It looks pretty clear")
         return True
@@ -110,7 +109,7 @@ class GoPiggy(pigo.Pigo):
         time.sleep(.1)
         return us_dist(15)
 
-
+    #INFORMATION: LEFT MOTOR STRONGER THAN RIGHT MOTOR
     # AUTONOMOUS DRIVING
     def nav(self):
         print("Piggy nav")
@@ -120,6 +119,9 @@ class GoPiggy(pigo.Pigo):
         while self.isClear():
             #Let's go forward just a bit
             self.encF(10)
+        if self.isClear() is False:
+            self.choosePath()
+
 
 
 ####################################################
