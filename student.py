@@ -124,6 +124,7 @@ class GoPiggy(pigo.Pigo):
             self.encL(8)
         elif answer == "right":
             self.encR(8)
+        self.nav()
 
 
 
