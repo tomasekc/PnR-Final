@@ -121,7 +121,6 @@ class GoPiggy(pigo.Pigo):
             print("Degree: " + str(x) + ", distance: " + str(scan1))
             if scan1 < self.STOP_DIST:
                 print("Doesn't look clear to me")
-        return True
 
 
     def status(self):
