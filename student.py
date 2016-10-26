@@ -139,7 +139,7 @@ class GoPiggy(pigo.Pigo):
         while self.OwnIsClear():
             #Let's go forward just a bit
             self.encF(10)
-        while self.OwnisClear() is False:
+        while self.OwnIsClear() is False:
             self.choosePath()
 
 
