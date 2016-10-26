@@ -137,10 +137,10 @@ class GoPiggy(pigo.Pigo):
         ##### WRITE YOUR FINAL PROJECT HERE
         #TODO: If while loop fials, check for other paths
         #loop: check that it's clear
-        while self.isClear():
+        while self.OwnIsClear():
             #Let's go forward just a bit
             self.encF(10)
-        while self.isClear() is False:
+        while self.OwnisClear() is False:
             self.choosePath()
 
 
