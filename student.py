@@ -14,6 +14,8 @@ class GoPiggy(pigo.Pigo):
     # You may want to add a variable to store your default speed
     MIDPOINT = 85
     STOP_DIST = 20
+    RIGHT_SPEED = 200
+    LEFT_SPEED = 185
 
     # CONSTRUCTOR
     def __init__(self):
@@ -118,7 +120,8 @@ class GoPiggy(pigo.Pigo):
         #loop: check that it's clear
         while self.isClear():
             #Let's go forward just a bit
-            self.encF(10)
+            self.encF(20)
+        #Choosing the direction
         answer = self.choosePath()
         if answer == "left":
             self.encL(8)
