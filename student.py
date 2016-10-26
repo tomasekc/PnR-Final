@@ -102,26 +102,6 @@ class GoPiggy(pigo.Pigo):
             print("It looks pretty clear")
         return True
 
-    def OwnIsClear(self):
-        for x in range((self.MIDPOINT - 15), (self.MIDPOINT + 15), 5):
-            servo(x)
-            time.sleep(.1)
-            scan1 = us_dist(15)
-            time.sleep(.1)
-            # double check the distance
-            scan2 = us_dist(15)
-            time.sleep(.1)
-            # if I found a different distance the second time....
-            if abs(scan1 - scan2) > 2:
-                scan3 = us_dist(15)
-                time.sleep(.1)
-                # take another scan and average the three together
-                scan1 = (scan1 + scan2 + scan3) / 3
-            self.scan[x] = scan1
-            print("Degree: " + str(x) + ", distance: " + str(scan1))
-            if scan1 < self.STOP_DIST:
-                print("Doesn't look clear to me")
-
 
     def status(self):
         print("My power is at:" + str(volt()) + "volts")
@@ -136,11 +116,14 @@ class GoPiggy(pigo.Pigo):
         ##### WRITE YOUR FINAL PROJECT HERE
         #TODO: If while loop fials, check for other paths
         #loop: check that it's clear
-        while self.OwnIsClear():
+        while self.isClear():
             #Let's go forward just a bit
             self.encF(10)
-        while self.OwnIsClear() is False:
-            self.choosePath()
+        answer = self.choosePath()
+        if answer == "left":
+            self.encL(3)
+        elif answer == "right":
+            self.encR(5)
 
 
 
