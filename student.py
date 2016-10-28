@@ -23,7 +23,7 @@ class GoPiggy(pigo.Pigo):
         # this method makes sure Piggy is looking forward
         #self.calibrate()
         # let's use an event-driven model, make a handler of sorts to listen for "events"
-        set_right_speed(self.RIGHT_SPPED)
+        set_right_speed(self.RIGHT_SPEED)
         set_left_speed(self.LEFT_SPEED)
         while True:
             self.stop()
