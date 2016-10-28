@@ -115,7 +115,6 @@ class GoPiggy(pigo.Pigo):
         time.sleep(.1)
         return us_dist(15)
 
-    #INFORMATION: LEFT MOTOR STRONGER THAN RIGHT MOTOR
     # AUTONOMOUS DRIVING
     def nav(self):
         print("Piggy nav")
