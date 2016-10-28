@@ -126,10 +126,13 @@ class GoPiggy(pigo.Pigo):
             self.encF(20)
         #Choosing the direction
         answer = self.choosePath()
-        if answer == "left":
+        if answer == "left" and answer > self.STOP_DIST:
             self.encL(8)
-        elif answer == "right":
+        elif answer == "right" and answer > self.STOP_DIST:
             self.encR(8)
+        elif answer < self.STOP_DIST:
+            print ("I seem to be trapped. I'll back up and retry my options")
+            self.encB(20)
         self.nav()
 
 
