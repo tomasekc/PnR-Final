@@ -12,10 +12,10 @@ improve the parent class and it won't overwrite your work.
 class GoPiggy(pigo.Pigo):
     # CUSTOM INSTANCE VARIABLES GO HERE. You get the empty self.scan array from Pigo
     # You may want to add a variable to store your default speed
-    MIDPOINT = 85
+    MIDPOINT = 83
     STOP_DIST = 20
     RIGHT_SPEED = 200
-    LEFT_SPEED = 175
+    LEFT_SPEED = 171
 
     # CONSTRUCTOR
     def __init__(self):
