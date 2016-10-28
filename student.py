@@ -17,6 +17,8 @@ class GoPiggy(pigo.Pigo):
     RIGHT_SPEED = 200
     LEFT_SPEED = 171
 
+
+
     # CONSTRUCTOR
     def __init__(self):
         print("Piggy has be instantiated!")
@@ -28,6 +30,8 @@ class GoPiggy(pigo.Pigo):
         while True:
             self.stop()
             self.handler()
+
+
 
     ##### HANDLE IT
     def handler(self):
@@ -74,6 +78,7 @@ class GoPiggy(pigo.Pigo):
             time.sleep(.1)
 
 
+
     def superClear(self):
     #Check front distance
         servo(self.MIDPOINT)
@@ -108,33 +113,15 @@ class GoPiggy(pigo.Pigo):
             print("It looks pretty clear")
         return True
 
+
+
     def status(self):
         print("My power is at:" + str(volt()) + "volts")
         servo(self.MIDPOINT)
         time.sleep(.1)
         return us_dist(15)
 
-    def frontClear(self) -> bool:
-        for x in range((self.MIDPOINT - 5), (self.MIDPOINT + 5), 5):
-            servo(x)
-            time.sleep(.1)
-            scan1 = us_dist(15)
-            time.sleep(.1)
-            # double check the distance
-            scan2 = us_dist(15)
-            time.sleep(.1)
-            # if I found a different distance the second time....
-            if abs(scan1 - scan2) > 2:
-                scan3 = us_dist(15)
-                time.sleep(.1)
-                # take another scan and average the three together
-                scan1 = (scan1 + scan2 + scan3) / 3
-            self.scan[x] = scan1
-            print("Degree: " + str(x) + ", distance: " + str(scan1))
-            if scan1 < self.STOP_DIST:
-                print("Doesn't look clear to me")
-                return False
-        return True
+
 
     # AUTONOMOUS DRIVING
     def nav(self):
@@ -142,9 +129,9 @@ class GoPiggy(pigo.Pigo):
         ##### WRITE YOUR FINAL PROJECT HERE
         #TODO: If while loop fials, check for other paths
         #loop: check that it's clear
-        while self.frontClear():
+        while self.isClear():
             #Let's go forward just a bit
-            self.encF()
+            self.encF(10)
         #Choosing the direction
         answer = self.choosePath()
         if answer == "left":
