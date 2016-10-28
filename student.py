@@ -45,6 +45,8 @@ class GoPiggy(pigo.Pigo):
         ans = input("Your selection: ")
         menu.get(ans, [None, error])[1]()
 
+
+
     # A SIMPLE DANCE ALGORITHM
     def dance(self):
         print("Piggy dance")
