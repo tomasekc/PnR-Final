@@ -121,9 +121,10 @@ class  GoPiggy(pigo.Pigo):
         print('I get scared when things are closer than ' + str(self.STOP_DIST) + 'cm')
         print('Left speed set to: ' + str(self.LEFT_SPEED) + ' // Right set to: ' + str(self.RIGHT_SPEED))
         servo(self.MIDPOINT)
+        self.encF(15)
         time.sleep(.1)
         return us_dist(15)
-        self.encF(15)
+
 
 
 
