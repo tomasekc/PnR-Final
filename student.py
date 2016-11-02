@@ -41,7 +41,7 @@ class GoPiggy(pigo.Pigo):
                 "2": ("Rotate", self.rotate),
                 "3": ("Dance", self.dance),
                 "4": ("Calibrate servo", self.calibrate),
-                "s": ("Battery level", self.status),
+                "s": ("Battery level", self.currentStatus),
                 "q": ("Quit", quit)
                 }
         # loop and print the menu...
@@ -80,30 +80,30 @@ class GoPiggy(pigo.Pigo):
 
 
     def superClear(self):
-    #Check front distance
+        #Check front distance
         servo(self.MIDPOINT)
         time.sleep(.1)
         scan1 = us_dist(15)
         time.sleep(.5)
         print("Front Distance:" + str(us_dist(15)))
-    #Check right distance
+        #Check right distance
         servo(self.MIDPOINT - 60)
         time.sleep(.1)
         scan2 = us_dist(15)
         time.sleep(.5)
         print("Right Distance:" + str(us_dist(15)))
-    #Check left distance
+        #Check left distance
         servo(self.MIDPOINT + 60)
         time.sleep(.1)
         scan3 = us_dist(15)
         time.sleep(.5)
         print("Left Distance:" + str(us_dist(15)))
-    #Average the 3 scans
+        #Average the 3 scans
         scan0 = (scan1 + scan2 +scan3) / 3
         time.sleep(.1)
         servo(self.MIDPOINT)
         time.sleep(.5)
-    #If its safe or not to dance:
+        #If its safe or not to dance:
         if scan0 < self.STOP_DIST:
             print("There is something in the way, so I'll back up")
             time.sleep(.5)
@@ -115,9 +115,11 @@ class GoPiggy(pigo.Pigo):
 
 
 
-    def status(self):
+    def currentStatus(self):
         print("My power is at:" + str(volt()) + "volts")
         servo(self.MIDPOINT)
+        print('My MIDPOINT is set to: ' + str(self.MIDPOINT))
+        print('I get scared when things are closer than ' + str(self.STOP_DIST) + 'cm')
         time.sleep(.1)
         return us_dist(15)
 
@@ -138,6 +140,9 @@ class GoPiggy(pigo.Pigo):
             self.encL(8)
         elif answer == "right":
             self.encR(8)
+        elif answer == "There is no where to go":
+            print("Since there's no where to go, I'll back up")
+            self.encB(20)
         self.nav()
 
 
