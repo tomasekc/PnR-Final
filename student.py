@@ -123,7 +123,7 @@ class  GoPiggy(pigo.Pigo):
         servo(self.MIDPOINT)
         time.sleep(.1)
         return us_dist(15)
-        self. encF(15)
+        self.encF(15)
 
 
 
