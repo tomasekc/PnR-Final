@@ -41,7 +41,7 @@ class  GoPiggy(pigo.Pigo):
                 "2": ("Rotate", self.rotate),
                 "3": ("Dance", self.dance),
                 "4": ("Calibrate servo", self.calibrate),
-                "s": ("Status", self.currentStatus),
+                "5": ("Status", self.currentStatus),
                 "q": ("Quit", quit)
                 }
         # loop and print the menu...
@@ -119,9 +119,11 @@ class  GoPiggy(pigo.Pigo):
         print("My power is at:" + str(volt()) + "volts")
         print('My MIDPOINT is set to: ' + str(self.MIDPOINT))
         print('I get scared when things are closer than ' + str(self.STOP_DIST) + 'cm')
+        print('Left speed set to: ' + str(self.LEFT_SPEED) + ' // Right set to: ' + str(self.RIGHT_SPEED))
         servo(self.MIDPOINT)
         time.sleep(.1)
         return us_dist(15)
+        self. encF(15)
 
 
 
