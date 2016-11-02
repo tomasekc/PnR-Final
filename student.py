@@ -9,7 +9,7 @@ improve the parent class and it won't overwrite your work.
 '''
 
 
-class GoPiggy(pigo.Pigo):
+class  GoPiggy(pigo.Pigo):
     # CUSTOM INSTANCE VARIABLES GO HERE. You get the empty self.scan array from Pigo
     # You may want to add a variable to store your default speed
     MIDPOINT = 83
@@ -41,7 +41,7 @@ class GoPiggy(pigo.Pigo):
                 "2": ("Rotate", self.rotate),
                 "3": ("Dance", self.dance),
                 "4": ("Calibrate servo", self.calibrate),
-                "s": ("Battery level", self.currentStatus),
+                "s": ("Status", self.currentStatus),
                 "q": ("Quit", quit)
                 }
         # loop and print the menu...
@@ -117,9 +117,9 @@ class GoPiggy(pigo.Pigo):
 
     def currentStatus(self):
         print("My power is at:" + str(volt()) + "volts")
-        servo(self.MIDPOINT)
         print('My MIDPOINT is set to: ' + str(self.MIDPOINT))
         print('I get scared when things are closer than ' + str(self.STOP_DIST) + 'cm')
+        servo(self.MIDPOINT)
         time.sleep(.1)
         return us_dist(15)
 
@@ -143,6 +143,7 @@ class GoPiggy(pigo.Pigo):
         elif answer == "There is no where to go":
             print("Since there's no where to go, I'll back up")
             self.encB(20)
+            self.encL(8)
         self.nav()
 
 
