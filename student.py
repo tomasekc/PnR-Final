@@ -150,7 +150,9 @@ class  GoPiggy(pigo.Pigo):
         #Have the robot drive forward without end
         while self.frontClear():
             print("It is clear. Time to fly!")
-            self.encF()
+            fwd()
+            if not self.frontClear():
+                self.stop()
 
 
     # AUTONOMOUS DRIVING
