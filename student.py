@@ -52,6 +52,15 @@ class  GoPiggy(pigo.Pigo):
         menu.get(ans, [None, error])[1]()
 
 
+    def currentStatus(self):
+        print("My power is at:" + str(volt()) + "volts")
+        print('My MIDPOINT is set to: ' + str(self.MIDPOINT))
+        print('I get scared when things are closer than ' + str(self.STOP_DIST) + 'cm')
+        print('Left speed set to: ' + str(self.LEFT_SPEED) + ' // Right set to: ' + str(self.RIGHT_SPEED))
+        servo(self.MIDPOINT)
+        time.sleep(.1)
+        return us_dist(15)
+
 
     # A SIMPLE DANCE ALGORITHM
     def dance(self):
@@ -114,18 +123,35 @@ class  GoPiggy(pigo.Pigo):
         return True
 
 
+    def frontClear(self) -> bool:
+        for x in range((self.MIDPOINT - 2), (self.MIDPOINT + 2), 2):
+            servo(x)
+            time.sleep(.1)
+            scan1 = us_dist(15)
+            time.sleep(.1)
+            # double check the distance
+            scan2 = us_dist(15)
+            time.sleep(.1)
+            # if I found a different distance the second time....
+            if abs(scan1 - scan2) > 2:
+                scan3 = us_dist(15)
+                time.sleep(.1)
+                # take another scan and average the three together
+                scan1 = (scan1 + scan2 + scan3) / 3
+            self.scan[x] = scan1
+            print("Degree: " + str(x) + ", distance: " + str(scan1))
+            if scan1 < self.STOP_DIST:
+                print("Doesn't look clear to me")
+                return False
+        return True
 
-    def currentStatus(self):
-        print("My power is at:" + str(volt()) + "volts")
-        print('My MIDPOINT is set to: ' + str(self.MIDPOINT))
-        print('I get scared when things are closer than ' + str(self.STOP_DIST) + 'cm')
-        print('Left speed set to: ' + str(self.LEFT_SPEED) + ' // Right set to: ' + str(self.RIGHT_SPEED))
-        servo(self.MIDPOINT)
-        self.encF(15)
-        time.sleep(.1)
-        return us_dist(15)
-
-
+    def cruise(self):
+        #Have the robot drive forward without end
+        while self.frontClear():
+            print("It is clear. Time to fly!")
+            self.encF()
+        else:
+            break
 
 
     # AUTONOMOUS DRIVING
