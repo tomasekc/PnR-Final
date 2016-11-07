@@ -146,8 +146,7 @@ class  GoPiggy(pigo.Pigo):
 
     # TODO: keep working here
     def cruise(self):
-        set_right_speed = 100
-        set_left_speed = 71
+        self.setSpeed(71, 100)
         #Have the robot drive forward without end
         while self.frontClear():
             print("It is clear. Time to fly!")
