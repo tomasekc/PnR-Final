@@ -126,7 +126,6 @@ class  GoPiggy(pigo.Pigo):
 
     def frontClear(self) -> bool:
         for x in range((self.MIDPOINT - 3), (self.MIDPOINT + 3), 3):
-            x = 50
             servo(x)
             time.sleep(.1)
             scan1 = us_dist(15)
@@ -150,6 +149,8 @@ class  GoPiggy(pigo.Pigo):
         #Have the robot drive forward without end
         while self.frontClear():
             print("It is clear. Time to fly!")
+            self.RIGHT_SPEED = 100
+            self.LEFT_SPEED = 71
             fwd()
             if not self.frontClear():
                 self.stop()
