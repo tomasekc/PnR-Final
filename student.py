@@ -126,7 +126,7 @@ class  GoPiggy(pigo.Pigo):
 
     def frontClear(self) -> bool:
         for x in range((self.MIDPOINT - 3), (self.MIDPOINT + 3), 3):
-            x = 100
+            x = 50
             servo(x)
             time.sleep(.1)
             scan1 = us_dist(15)
@@ -170,10 +170,10 @@ class  GoPiggy(pigo.Pigo):
             self.encL(8)
         elif answer == "right":
             self.encR(8)
-        elif answer == "There is no where to go":
-            print("Since there's no where to go, I'll back up")
-            self.encB(20)
-            self.encL(8)
+        #elif answer == "There is no where to go":
+            #print("Since there's no where to go, I'll back up")
+            #self.encB(20)
+            #self.encL(8)
         self.nav()
 
 
