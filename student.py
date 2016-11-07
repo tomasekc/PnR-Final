@@ -129,10 +129,8 @@ class  GoPiggy(pigo.Pigo):
             servo(x)
             time.sleep(.1)
             scan1 = us_dist(15)
-            time.sleep(.1)
             # double check the distance
             scan2 = us_dist(15)
-            time.sleep(.1)
             # if I found a different distance the second time....
             if abs(scan1 - scan2) > 2:
                 scan3 = us_dist(15)
@@ -146,6 +144,7 @@ class  GoPiggy(pigo.Pigo):
                 return False
         return True
 
+    # TODO: keep working here
     def cruise(self):
         #Have the robot drive forward without end
         while self.frontClear():
