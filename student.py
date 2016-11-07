@@ -125,7 +125,7 @@ class  GoPiggy(pigo.Pigo):
 
 
     def frontClear(self) -> bool:
-        for x in range((self.MIDPOINT - 2), (self.MIDPOINT + 2), 2):
+        for x in range((self.MIDPOINT - 1), (self.MIDPOINT + 1), 1):
             servo(x)
             time.sleep(.1)
             scan1 = us_dist(15)
