@@ -163,13 +163,13 @@ class  GoPiggy(pigo.Pigo):
         #loop: check that it's clear
         while self.isClear():
             #Let's go forward just a bit
-            self.encF(10)
+            self.cruise()
         #Choosing the direction
         answer = self.choosePath()
         if answer == "left":
-            self.encL(8)
+            self.encL(9)
         elif answer == "right":
-            self.encR(8)
+            self.encR(9)
         elif answer == "There is no where to go":
             print("Since there's no where to go, I'll back up")
             self.encB(20)
