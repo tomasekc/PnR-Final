@@ -146,7 +146,7 @@ class  GoPiggy(pigo.Pigo):
 
     # TODO: keep working here
     def cruise(self):
-        self.setSpeed(77, 100)
+        self.setSpeed(72, 100)
         #Have the robot drive forward without end
         while self.frontClear():
             print("It is clear. Time to fly!")
@@ -170,10 +170,10 @@ class  GoPiggy(pigo.Pigo):
             self.encL(8)
         elif answer == "right":
             self.encR(8)
-        #elif answer == "There is no where to go":
-            #print("Since there's no where to go, I'll back up")
-            #self.encB(20)
-            #self.encL(8)
+        elif answer == "There is no where to go":
+            print("Since there's no where to go, I'll back up")
+            self.encB(20)
+            self.encL(15)
         self.nav()
 
 
