@@ -127,9 +127,8 @@ class  GoPiggy(pigo.Pigo):
     def frontClear(self) -> bool:
         for x in range((self.MIDPOINT - 5), (self.MIDPOINT + 5), 5):
             servo(x)
-            time.sleep(.05)
+            time.sleep(.1)
             scan1 = us_dist(15)
-            time.sleep(.05)
             # double check the distance
             scan2 = us_dist(15)
             # if I found a different distance the second time....
@@ -190,7 +189,7 @@ class  GoPiggy(pigo.Pigo):
         #TODO: If while loop fials, check for other paths
         #loop: check that it's clear
         while self.isClear():
-            #Let's go forward just a bit
+            #Let's go forward a lot
             self.cruise()
         #Choosing the direction
         answer = self.superChoosePath()
