@@ -42,7 +42,6 @@ class  GoPiggy(pigo.Pigo):
                 "3": ("Dance", self.dance),
                 "4": ("Calibrate servo", self.calibrate),
                 "5": ("Status", self.currentStatus),
-                "6": ("Cruise", self.cruise),
                 "q": ("Quit", quit)
                 }
         # loop and print the menu...
@@ -125,10 +124,11 @@ class  GoPiggy(pigo.Pigo):
 
 
     def frontClear(self) -> bool:
-        for x in range((self.MIDPOINT - 3), (self.MIDPOINT + 3), 3):
+        for x in range((self.MIDPOINT - 5), (self.MIDPOINT + 5), 5):
             servo(x)
-            time.sleep(.1)
+            time.sleep(.05)
             scan1 = us_dist(15)
+            time.sleep(.05)
             # double check the distance
             scan2 = us_dist(15)
             # if I found a different distance the second time....
@@ -143,6 +143,33 @@ class  GoPiggy(pigo.Pigo):
                 print("Doesn't look clear to me")
                 return False
         return True
+
+
+    def superChoosePath(self) -> str:
+        print('Considering options...')
+        if self.isClear():
+            return "fwd"
+        else:
+            self.wideScan()
+        avgRight = 0
+        avgLeft = 0
+        for x in range(self.MIDPOINT - 60, self.MIDPOINT):
+            if self.scan[x]:
+                avgRight += self.scan[x]
+        avgRight /= 60
+        print('The average dist on the right is ' + str(avgRight) + 'cm')
+        for x in range(self.MIDPOINT, self.MIDPOINT + 60):
+            if self.scan[x]:
+                avgLeft += self.scan[x]
+        avgLeft /= 60
+        print('The average dist on the left is ' + str(avgLeft) + 'cm')
+        if avgRight > avgLeft and avgRight > self.STOP_DIST:
+            return "right"
+        if avgLeft > avgRight and avgLeft > self.STOP_DIST:
+            return "left"
+        elif avgRight < self.STOP_DIST or avgLeft < self.STOP_DIST:
+            return "There is no where to go"
+
 
     # TODO: keep working here
     def cruise(self):
@@ -165,7 +192,7 @@ class  GoPiggy(pigo.Pigo):
             #Let's go forward just a bit
             self.cruise()
         #Choosing the direction
-        answer = self.choosePath()
+        answer = self.superChoosePath()
         if answer == "left":
             self.encL(9)
         elif answer == "right":
