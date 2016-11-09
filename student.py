@@ -27,6 +27,7 @@ class  GoPiggy(pigo.Pigo):
         # let's use an event-driven model, make a handler of sorts to listen for "events"
         set_right_speed(self.RIGHT_SPEED)
         set_left_speed(self.LEFT_SPEED)
+        servo(self.MIDPOINT)
         while True:
             self.stop()
             self.handler()
