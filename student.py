@@ -192,6 +192,9 @@ class  GoPiggy(pigo.Pigo):
         while self.isClear():
             #Let's go forward a lot
             self.cruise()
+            if False:
+                self.stop()
+                self.superChoosePath()
         #Choosing the direction
         answer = self.superChoosePath()
         if answer == "left":
