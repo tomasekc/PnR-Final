@@ -186,7 +186,7 @@ class  GoPiggy(pigo.Pigo):
     def nav(self):
         print("Piggy nav")
         ##### WRITE YOUR FINAL PROJECT HERE
-        #TODO: If while loop fials, check for other paths
+        #TODO: If while loop fails, check for other paths
         #loop: check that it's clear
         while self.isClear():
             #Let's go forward a lot
@@ -196,15 +196,15 @@ class  GoPiggy(pigo.Pigo):
                 self.superChoosePath()
         #Choosing the direction
                 answer = self.superChoosePath()
-                    if answer == "left":
-                        self.encL(9)
-                    elif answer == "right":
-                        self.encR(9)
-                    elif answer == "There is no where to go":
-                        print("Since there's no where to go, I'll back up")
-                        self.encB(20)
-                        self.encL(15)
-                    self.nav()
+                if answer == "left":
+                    self.encL(9)
+                elif answer == "right":
+                    self.encR(9)
+                elif answer == "There is no where to go":
+                    print("Since there's no where to go, I'll back up")
+                    self.encB(20)
+                    self.encL(15)
+                self.nav()
 
 
 
