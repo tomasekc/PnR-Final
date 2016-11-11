@@ -195,16 +195,16 @@ class  GoPiggy(pigo.Pigo):
                 self.stop()
                 self.superChoosePath()
         #Choosing the direction
-        answer = self.superChoosePath()
-        if answer == "left":
-            self.encL(9)
-        elif answer == "right":
-            self.encR(9)
-        elif answer == "There is no where to go":
-            print("Since there's no where to go, I'll back up")
-            self.encB(20)
-            self.encL(15)
-        self.nav()
+                answer = self.superChoosePath()
+                    if answer == "left":
+                        self.encL(9)
+                    elif answer == "right":
+                        self.encR(9)
+                    elif answer == "There is no where to go":
+                        print("Since there's no where to go, I'll back up")
+                        self.encB(20)
+                        self.encL(15)
+                    self.nav()
 
 
 
