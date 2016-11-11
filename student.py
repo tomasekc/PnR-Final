@@ -171,7 +171,7 @@ class  GoPiggy(pigo.Pigo):
             return "There is no where to go"
 
 
-    # TODO: keep working here
+    #Moving slowly forever but still scanning
     def cruise(self):
         self.setSpeed(75, 100)
         #Have the robot drive forward without end
